@@ -1,11 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap'); 
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-react-calendars/styles/material.css";
 *{
     font-family: 'Fugaz One', cursive;
 }
 body{
     margin: 0; 
     padding: 0; 
-    background:  linear-gradient(rgba(155, 160, 80, 0.9), rgba(21, 28, 167, 0.7)),url("../public/assets/image4.jpeg"); 
+    background:  linear-gradient(95deg, rgba(28, 70, 110, 0.7), rgba(85, 119, 85, 0.7)); 
     height: 100vh; 
     background-position: center; 
     background-size: cover ; 

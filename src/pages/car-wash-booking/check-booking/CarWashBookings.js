@@ -1,10 +1,14 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Sidebar from '../../../components/sidebar/Sidebar' 
 import Navbar from '../../../components/navbar/Navbar' 
+import Booking from './Booking'
+import { BookingContext } from '../../../context/bookings/BookingsState'
 import {Link} from 'react-router-dom'
 import './wash-bookings.scss'
 
 function CarWashBookings() {
+  const {bookings} = useContext(BookingContext) 
+  console.log(bookings)
   return (
     <div className='bookings-container'>
         <Sidebar/> 
@@ -22,45 +26,22 @@ function CarWashBookings() {
       <th scope="col">Phone Number</th>
       <th scope="col">Car Registration Number</th> 
       <th scope="col">Wash Attendant</th> 
-      <th scope="col">Date</th>
+      <th scope="col">Payment Method</th>
+      <th scope="col">Date</th> 
+      <th scope="col">Time</th>
 
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>0722145654</td>
-      <td>KAK 312T</td> 
-      <td>Peter</td> 
-      <td>{new Date().toLocaleString() + ""}</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th> 
-      <td>Mark</td>
-      <td>0722145654</td>
-      <td>KAK 312T</td> 
-      <td>Mike</td> 
-      <td>{new Date().toLocaleString() + ""}</td>
+   <tbody>
+    {bookings.map(booking => (
       
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>John</td>
-      <td>0722145654</td>
-      <td>KBE 153R</td> 
-      <td>John</td> 
-      <td>{new Date().toLocaleString() + ""}</td>
-    </tr> 
-    <tr>
-      <th scope="row">4</th>
-      <td>Mark</td>
-      <td>0722145654</td>
-      <td>KAK 312T</td> 
-      <td>Peter</td> 
-      <td>{new Date().toLocaleString() + ""}</td>
-    </tr>
-  </tbody>
+        <Booking key={booking.id} booking={booking}/>
+     
+    
+    ))} 
+    </tbody>
+    
+ 
 </table>
 
         </div>

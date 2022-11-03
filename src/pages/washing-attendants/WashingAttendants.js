@@ -1,9 +1,12 @@
-import React from 'react' 
+import React, {useContext} from 'react' 
 import Sidebar from '../../components/sidebar/Sidebar' 
-import Navbar from '../../components/navbar/Navbar' 
+import Navbar from '../../components/navbar/Navbar'  
+import Attendant from './Attendant'
+import { AttendantsContext } from '../../context/attendants/AttendantsState'
 import './attendants.scss'
 
-function WashingAttendants() {
+function WashingAttendants() { 
+  const { attendants} = useContext(AttendantsContext)
   return (
     <div className="washing-attendants"> 
        <Sidebar/> 
@@ -16,35 +19,19 @@ function WashingAttendants() {
              <th scope="col">First</th>
              <th scope="col">Last</th>
              <th scope="col">Phone Number</th> 
+             <th scope="col">Date Joined</th>
            
              
             </tr>
             </thead>
-         <tbody>
-           <tr>
-             <th scope="row">1</th>
-             <td>Peter</td>
-             <td>Drury</td>
-             <td>07214534</td>
-           </tr>
-         <tr>
-          <th scope="row">2</th>
-          <td>John</td>
-          <td>Doe</td>
-         <td>0986453</td>
-         </tr>
-          <tr>
-          <th scope="row">3</th>
-          <td>Mark</td>
-          <td>James</td>
-           <td>09754564</td>
-          </tr> 
-          <tr>
-          <th scope="row">4</th>
-          <td>Mike</td>
-          <td>James</td>
-           <td>09754564</td>
-          </tr>
+         <tbody> 
+          {attendants.map(attendant => ( 
+            <Attendant key={attendant.id} attendant={attendant}/>
+             
+          
+
+          ))}
+          
         </tbody>
 </table>
 

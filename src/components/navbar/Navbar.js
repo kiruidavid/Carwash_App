@@ -28,7 +28,7 @@ function Navbar() {
         <div className='icons'> 
         <BsCalendarFill/>
         {
-           new Date().toLocaleString() + ""
+          new Date().toLocaleString()
         }
 
         </div>
