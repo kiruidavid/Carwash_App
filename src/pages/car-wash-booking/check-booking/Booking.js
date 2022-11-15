@@ -5,14 +5,15 @@ function Booking({booking}) {
   return (
     <tr>
       
-      <th scope="row">{booking.id}</th>
-      <td>{booking.data.name}</td>
-      <td>{booking.data.phoneNo}</td>
-      <td>{booking.data.carRegNo}</td> 
-      <td>{booking.data.attendant}</td> 
-      <td>{booking.data.payment_method}</td> 
-      <td>{booking.currentDate}</td> 
-      <td>{booking.currentTime}</td> 
+      
+      <td>{booking.name}</td>
+      <td>{booking.phone_no}</td>
+      <td>{booking.car_reg_no}</td> 
+      <td>{booking.attendant_name}</td> 
+      <td>{booking.payment_method}</td> 
+      <td>{booking.booking_date}</td> 
+      <td>{booking.booking_time}</td> 
+      <td>{booking.total_price}</td>
       <div className='btn-view'>
       <button>DELETE</button> 
       <button>VIEW</button> 

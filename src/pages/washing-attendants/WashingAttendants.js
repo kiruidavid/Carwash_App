@@ -1,4 +1,4 @@
-import React, {useContext} from 'react' 
+import React, {useContext, useEffect} from 'react' 
 import Sidebar from '../../components/sidebar/Sidebar' 
 import Navbar from '../../components/navbar/Navbar'  
 import Attendant from './Attendant'
@@ -6,7 +6,9 @@ import { AttendantsContext } from '../../context/attendants/AttendantsState'
 import './attendants.scss'
 
 function WashingAttendants() { 
-  const { attendants} = useContext(AttendantsContext)
+  const { getAttendant, attendants} = useContext(AttendantsContext) 
+ 
+  
   return (
     <div className="washing-attendants"> 
        <Sidebar/> 
@@ -25,13 +27,10 @@ function WashingAttendants() {
             </tr>
             </thead>
          <tbody> 
-          {attendants.map(attendant => ( 
+          {attendants.map((attendant) => (
             <Attendant key={attendant.id} attendant={attendant}/>
-             
-          
-
           ))}
-          
+         
         </tbody>
 </table>
 

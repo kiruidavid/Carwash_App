@@ -1,4 +1,4 @@
-import React, {useContext} from 'react' 
+import React, {useContext,useState} from 'react' 
 import {useForm} from 'react-hook-form'
 import Sidebar from '../../../components/sidebar/Sidebar' 
 import Navbar from '../../../components/navbar/Navbar' 
@@ -9,14 +9,27 @@ import {AttendantsContext} from '../../../context/attendants/AttendantsState'
 import "react-datepicker/dist/react-datepicker.css"; 
 import './addbooking.scss'
 
+
 function AddBooking() { 
    const {attendants} = useContext(AttendantsContext) 
    const {register,formState:{errors},handleSubmit} = useForm()
-   console.log("errors: ", errors)
+   const [checkedPlan, setCheckedPlan] = useState([]) 
+   const [totalAmount, setTotalAmount] = useState(0)
    
-    const { addBookings} = useContext(BookingContext) 
+    const { washPlans,addBookings} = useContext(BookingContext) 
     const currentDate= new Date().toDateString() 
-    const currentTime=new Date().toLocaleTimeString()
+    const currentTime=new Date().toLocaleTimeString() 
+
+    const handleChange = (event, item) => { 
+      if(event.target.checked){
+        setCheckedPlan((planItem) => [...planItem, item]) 
+        setTotalAmount((sum) => sum = sum + parseInt(item.amount))
+      } else {
+        setCheckedPlan((planItem) => planItem.filter((i) => i.plan !== item.plan)) 
+        setTotalAmount((sum) => sum = sum - parseInt(item.amount))
+      }
+
+    }
    
  
 
@@ -36,19 +49,7 @@ function AddBooking() {
     <h2>Book for a wash</h2> 
     <button><Link to='/car-wash-bookings'><span>Check Bookings</span></Link></button>
    </div>
-   <form onSubmit={handleSubmit((data) => { 
-     const booking = {
-      id: "SHUAXCAR" + Math.floor(Math.random() * 10000), 
-      data, 
-      currentDate, 
-      currentTime
-      
-     
-     }  
-     addBookings(booking)
-     console.log(booking)
-
-   })}> 
+   <form> 
     <div className='formInput'>
       <label>Name:</label> 
       <input {...register("name", {
@@ -85,20 +86,7 @@ function AddBooking() {
        <p>{errors.carRegNo?.message}</p>
       
     </div> 
-    <div className='formInput'>
-   
-      <label>Wash Attendant:</label> 
-      <select {...register("attendant", {
-        required:"choose attendant"
-      })}> 
-      <option value="">Choose Attendant</option>
-       {attendants.map(attendant => (
-        <option value={attendant.firstName}>{attendant.firstName}</option>
-       ))}
-      </select>  
-      <p>{errors.attendant?.message}</p>
-      
-    </div>  
+    
     <div className='formInput'>
    
    <label>Payment Method:</label> 
@@ -107,14 +95,37 @@ function AddBooking() {
    })}> 
    <option value="">Payment Method</option>
     <option value="mPesa">M-PESA</option> 
-    <option value="mPesa">CASH</option> 
-    <option value="mPesa">CREDIT CARD</option>
+    <option value="cash">CASH</option> 
+    <option value="credit card">CREDIT CARD</option>
    
    </select>  
-   <p>{errors.attendant?.message}</p>
+   <p>{errors.payment_method?.message}</p>
    
  </div>  
-
+ <div className='formInput'> 
+ {washPlans.map((item) => (
+  <div><input type='checkbox' name={item.plan} onChange={(e) => handleChange(e, item)}/>{item.plan} - {item.amount}</div>
+ ))}
+  
+</div>  
+<div className='formInput'>
+   
+   <label>Washing Attendant:</label> 
+   <select {...register("washing_attendant", {
+     required:"choose attendant"
+   })}> 
+   {attendants.map((attendant) => (
+    <option key={attendant.id} value={attendant.id}>{attendant.id} - {attendant.first_name}</option>
+   ))}
+   
+   
+   </select>  
+   <p> {errors.payment_method?.message}</p>
+   
+ </div>  
+<div > 
+  <h4>KSHS. {totalAmount}</h4>
+  </div> 
     
    
     

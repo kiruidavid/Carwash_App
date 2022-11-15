@@ -1,21 +1,35 @@
-import React, {createContext, useReducer} from "react"; 
-import AttendantsReducer from "./AttendantsReducer";
+import React, {createContext, useState, useEffect} from "react"; 
+import axios from "axios";
 
 
-const initialState = {
-    attendants: [
-        {id: 1, firstName: 'Mark',lastName:"Doe",phoneNo: "07237845", dateJoined: new Date().toLocaleString()}, 
-        {id: 2, firstName: 'John',lastName:"Dame",phoneNo: "07737845", dateJoined: new Date().toLocaleString()}, 
-        {id: 3, firstName: 'Sarah',lastName:"Dear",phoneNo: "07239845", dateJoined: new Date().toLocaleString()}
-    ]
-} 
-export const AttendantsContext = createContext(initialState) 
 
-export const AttendantsProvider = ({children}) => {
- const [state, dispatch] = useReducer(AttendantsReducer, initialState) 
 
- return (<AttendantsContext.Provider value={{
-   attendants: state.attendants 
+export const AttendantsContext = createContext() 
+
+export const AttendantsProvider = ({children}) => { 
+  const [attendants, setAttendants] = useState([]) 
+  useEffect(() => {
+    getAttendant()
+  }, []) 
+  console.log(attendants)
+  function addAttendant(attendant){  
+    axios.post("/api/attendants", attendant) 
+         .then((response) => console.log(response)) 
+         .catch((error) => console.log(error))
+  } 
+  function getAttendant(){ 
+    axios.get("/api/attendants") 
+         .then((response) => setAttendants(response.data)) 
+         .catch((error) => console.log(error))
+
+  }
+ 
+
+ return (<AttendantsContext.Provider value={{ 
+  addAttendant, 
+  getAttendant, 
+  attendants
+ 
     
     
  }}>

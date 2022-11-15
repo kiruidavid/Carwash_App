@@ -21,14 +21,15 @@ function CarWashBookings() {
          <table className="table table-striped">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      
       <th scope="col">Name</th>
       <th scope="col">Phone Number</th>
-      <th scope="col">Car Registration Number</th> 
+      <th scope="col">Car Reg Number</th> 
       <th scope="col">Wash Attendant</th> 
       <th scope="col">Payment Method</th>
-      <th scope="col">Date</th> 
-      <th scope="col">Time</th>
+      <th scope="col">Booking Date</th> 
+      <th scope="col">Booking Time</th>  
+      <th scope="col">Total Price</th>
 
     </tr>
   </thead>
