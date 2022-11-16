@@ -1,13 +1,21 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import Sidebar from '../../../components/sidebar/Sidebar' 
 import Navbar from '../../../components/navbar/Navbar' 
 import Booking from './Booking'
 import { BookingContext } from '../../../context/bookings/BookingsState'
 import {Link} from 'react-router-dom'
 import './wash-bookings.scss'
+import CompleteBookings from './completed-bookings/CompleteBookings'
 
 function CarWashBookings() {
-  const {bookings} = useContext(BookingContext) 
+  const {bookings, completeBookings} = useContext(BookingContext) 
+  const [completed, setCompleted] = useState(false) 
+  const openCompleted = () => {
+    setCompleted(true)
+  } 
+  const closeCompleted = () => {
+    setCompleted(false)
+  }
   console.log(bookings)
   return (
     <div className='bookings-container'>
@@ -36,10 +44,20 @@ function CarWashBookings() {
    <tbody>
     {bookings.map(booking => (
       
-        <Booking key={booking.id} booking={booking}/>
+        <Booking key={booking.id} 
+               booking={booking} 
+               openCompleted={openCompleted} 
+               closeCompleted={closeCompleted} 
+               completeBookings={completeBookings}
+                
+               completed={completed}/> 
+
      
-    
-    ))} 
+              
+    ))}   
+     
+     
+ 
     </tbody>
     
  

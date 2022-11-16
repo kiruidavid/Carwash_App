@@ -49,7 +49,19 @@ function AddBooking() {
     <h2>Book for a wash</h2> 
     <button><Link to='/car-wash-bookings'><span>Check Bookings</span></Link></button>
    </div>
-   <form> 
+   <form onSubmit={handleSubmit(({name, phoneNo, carRegNo, payment_method, washing_attendant, totalAmount  }) => {
+    const new_booking = {
+      name: name, 
+      phone_no: phoneNo, 
+      car_reg_no: carRegNo, 
+      payment_method, 
+      total_price: totalAmount, 
+      booking_date: currentDate, 
+      booking_time: currentTime, 
+      attendant_id: washing_attendant
+    } 
+    addBookings(new_booking)
+   })}> 
     <div className='formInput'>
       <label>Name:</label> 
       <input {...register("name", {

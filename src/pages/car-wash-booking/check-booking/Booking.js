@@ -1,7 +1,9 @@
 import React from 'react' 
-import './wash-bookings.scss'
+import './wash-bookings.scss' 
+import CompleteBookings from './completed-bookings/CompleteBookings'
 
-function Booking({booking}) {
+function Booking({booking, completed,  openCompleted, closeCompleted, completeBookings}) { 
+  
   return (
     <tr>
       
@@ -15,9 +17,10 @@ function Booking({booking}) {
       <td>{booking.booking_time}</td> 
       <td>{booking.total_price}</td>
       <div className='btn-view'>
-      <button>DELETE</button> 
-      <button>VIEW</button> 
-      </div>
+      <button onClick={openCompleted}>COMPLETE BOOKING</button> 
+       
+      </div> 
+      {completed && <CompleteBookings booking={booking}closeCompleted={closeCompleted} completeBookings={completeBookings}/>}
     
     </tr>
   )

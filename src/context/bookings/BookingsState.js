@@ -42,8 +42,13 @@ export const BookingProvider = ({children}) => {
    axios.get("/api/booking") 
         .then((response) => setBookings(response.data)) 
         .catch((error) => console.log(error.message))
+ } 
+ function completeBookings(booking){
+   axios.post("/api/booking/complete-booking") 
+        .then((response) => console.log(response)) 
+        .catch((error) => console.log(error.message))
  }
- return <BookingContext.Provider value={{washPlans, addBookings, getBookings, bookings}}>
+ return <BookingContext.Provider value={{washPlans, addBookings, getBookings, bookings, completeBookings}}>
     {children}
  </BookingContext.Provider>
 }
