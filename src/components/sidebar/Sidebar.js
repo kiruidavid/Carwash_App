@@ -28,6 +28,7 @@ function Sidebar() {
             <li><MdLocalCarWash className='icons'/><Link to='/add-car-booking'><span>Book Car Wash</span></Link></li> 
            
             <li><TiBusinessCard className='icons'/><Link to='/car-wash-bookings'><span>Check Car Wash Bookings</span></Link></li> 
+            <li><TiBusinessCard className='icons'/><Link to='/completed-bookings'><span>Completed Car Wash Bookings</span></Link></li>  
             <li><FiUsers className='icons'/><Link to='/wash-attendants'><span>Washing Attendants</span></Link></li>
             
             <li><CgProfile className='icons'/><span>Profile</span></li>  

@@ -9,6 +9,7 @@ import WashingAttendants from './pages/washing-attendants/WashingAttendants';
 import './App.css'; 
 import {BookingProvider} from './context/bookings/BookingsState' 
 import {AttendantsProvider} from './context/attendants/AttendantsState'
+import BookingsCompleted from './pages/car-wash-booking/check-booking/completed-bookings/BookingsCompleted';
 
 
 
@@ -30,7 +31,8 @@ function App() {
         <Route path='/add-car-booking' element={<AddBooking/>}/> 
         <Route path='/car-wash-bookings' element={<CarWashBookings/>}/>
        
-        <Route path='/wash-attendants' element={<WashingAttendants/>}/>
+        <Route path='/wash-attendants' element={<WashingAttendants/>}/> 
+        <Route path='/completed-bookings' element={<BookingsCompleted/>}/>
       </Routes>
      
      </Router> 

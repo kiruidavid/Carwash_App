@@ -6,7 +6,8 @@ import axios from "axios";
 export const BookingContext = createContext() 
 
 export const BookingProvider = ({children}) => { 
-   const [bookings, setBookings] = useState([])
+   const [bookings, setBookings] = useState([]) 
+   const [completedBookings, setCompletedBookings] = useState([])
  const washPlans = [
    {
       plan: 'Exterior wash', 
@@ -31,6 +32,10 @@ export const BookingProvider = ({children}) => {
  ] 
  useEffect(() => {
    getBookings()
+ }, []) 
+ useEffect(() => { 
+   getCompletedBookings()
+
  }, [])
  function addBookings(booking){ 
    axios.post("/api/booking", booking) 
@@ -47,8 +52,14 @@ export const BookingProvider = ({children}) => {
    axios.post("/api/booking/complete-booking", booking) 
         .then((response) => console.log(response)) 
         .catch((error) => console.log(error.message))
+ } 
+ function getCompletedBookings(){ 
+   axios.get('/api/booking/complete-booking') 
+        .then((response) => setCompletedBookings(response.data)) 
+        .catch((error) => console.log(error))
+
  }
- return <BookingContext.Provider value={{washPlans, addBookings, getBookings, bookings, completeBookings}}>
+ return <BookingContext.Provider value={{washPlans, addBookings, getBookings, bookings, completeBookings,completedBookings, getCompletedBookings}}>
     {children}
  </BookingContext.Provider>
 }
