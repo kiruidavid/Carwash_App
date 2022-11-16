@@ -2,7 +2,12 @@ import express from 'express'
 import cors from 'cors'
 import bookingRouter from './routes/booking.js' 
 import attendantsRouter from './routes/attendants.js'
-import db from './config/db.js'
+import db from './config/db.js' 
+import dotenv from 'dotenv'  
+
+dotenv.config()
+
+
 
 const app = express() 
 
@@ -15,7 +20,7 @@ db.authenticate().then(() => {
 app.use(cors()) 
 app.use(express.json()) 
 
-const PORT = process.env.PORT || 3100 
+const PORT = process.env.PORT 
 
 app.use('/api/booking', bookingRouter) 
 app.use('/api/attendants', attendantsRouter)
