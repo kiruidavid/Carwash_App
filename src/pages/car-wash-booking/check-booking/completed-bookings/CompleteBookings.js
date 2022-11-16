@@ -5,9 +5,10 @@ function CompleteBookings({closeCompleted, booking, completeBookings}) {
     const handleSubmit = () => { 
         const completed_booking = {
             booking_id: booking.id, 
-            comleted_time: new Date().toLocaleTimeString()
+            completed_time: new Date().toLocaleTimeString()
         } 
-        completeBookings(completed_booking)
+        completeBookings(completed_booking) 
+        console.log(completed_booking)
 
     }
   return (

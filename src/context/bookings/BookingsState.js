@@ -44,7 +44,7 @@ export const BookingProvider = ({children}) => {
         .catch((error) => console.log(error.message))
  } 
  function completeBookings(booking){
-   axios.post("/api/booking/complete-booking") 
+   axios.post("/api/booking/complete-booking", booking) 
         .then((response) => console.log(response)) 
         .catch((error) => console.log(error.message))
  }
