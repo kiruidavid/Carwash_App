@@ -1,7 +1,14 @@
 import {Sequelize, DataTypes} from 'sequelize' 
 import db from '../config/db.js' 
+import Booking from './bookings.js'
 
-const Attendants = db.define('attendants', {
+const Attendants = db.define('attendants', { 
+    attendant_id: { 
+        type: DataTypes.INTEGER, 
+        autoIncrement: true,
+        primaryKey: true, 
+
+    },
     first_name: {
         type: DataTypes.STRING, 
 
@@ -9,14 +16,14 @@ const Attendants = db.define('attendants', {
 
     last_name: {
         type: DataTypes.STRING, 
-        allowNull: false
+        
     }, 
     phone_number: {
         type: DataTypes.STRING
     }, 
   
     date_joined: {
-        type: DataTypes.DATE
+        type: DataTypes.DATEONLY
     }, 
    
     
@@ -24,5 +31,7 @@ const Attendants = db.define('attendants', {
     freezeTableName: true, 
     timestamps: false
 }) 
+
+
 
 export default Attendants
