@@ -127,7 +127,7 @@ function AddBooking() {
      required:"choose attendant"
    })}> 
    {attendants.map((attendant) => (
-    <option key={attendant.id} value={attendant.id}>{attendant.id} - {attendant.first_name}</option>
+    <option key={attendant.attendant_id} value={attendant.attendant_id}>{attendant.attendant_id} - {attendant.first_name}</option>
    ))}
    
    

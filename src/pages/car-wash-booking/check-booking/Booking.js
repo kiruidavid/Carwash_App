@@ -1,8 +1,14 @@
-import React from 'react' 
+import React, {useState} from 'react' 
 import './wash-bookings.scss' 
-import CompleteBookings from './completed-bookings/CompleteBookings'
+import {Link} from 'react-router-dom'
 
-function Booking({booking, completed,  openCompleted, closeCompleted, completeBookings}) { 
+
+function Booking({booking}) { 
+  
+
+  
+
+ 
   
   return (
     <tr>
@@ -11,19 +17,22 @@ function Booking({booking, completed,  openCompleted, closeCompleted, completeBo
       <td>{booking.name}</td>
       <td>{booking.phone_no}</td>
       <td>{booking.car_reg_no}</td> 
-      <td>{booking.attendant_name}</td> 
+      <td>{booking.attendant.first_name}</td> 
       <td>{booking.payment_method}</td> 
       <td>{booking.booking_date}</td> 
       <td>{booking.booking_time}</td> 
       <td>{booking.total_price}</td>
-      <div className='btn-view'>
-      <button onClick={openCompleted}>COMPLETE BOOKING</button> 
+      <div className='btn-view'> 
+      <button><Link to={`/single-booking/${booking.booking_id}`}>Check Bookings</Link></button>
+      
+      
        
       </div> 
-      {completed && <CompleteBookings booking={booking}closeCompleted={closeCompleted} completeBookings={completeBookings}/>}
+      
     
     </tr>
   )
-}
+} 
+
 
 export default Booking

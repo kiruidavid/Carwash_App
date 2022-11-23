@@ -11,7 +11,7 @@ export const AttendantsProvider = ({children}) => {
   useEffect(() => {
     getAttendant()
   }, []) 
-  console.log(attendants)
+ 
   function addAttendant(attendant){  
     axios.post("/api/attendants", attendant) 
          .then((response) => console.log(response)) 

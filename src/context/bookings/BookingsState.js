@@ -8,6 +8,8 @@ export const BookingContext = createContext()
 export const BookingProvider = ({children}) => { 
    const [bookings, setBookings] = useState([]) 
    const [completedBookings, setCompletedBookings] = useState([])
+   
+   
  const washPlans = [
    {
       plan: 'Exterior wash', 
@@ -30,13 +32,14 @@ export const BookingProvider = ({children}) => {
       amount: 800
    }
  ] 
+ 
+
  useEffect(() => {
    getBookings()
  }, []) 
- useEffect(() => { 
-   getCompletedBookings()
+ 
 
- }, [])
+
  function addBookings(booking){ 
    axios.post("/api/booking", booking) 
         .then((response) => console.log(response)) 
@@ -47,19 +50,24 @@ export const BookingProvider = ({children}) => {
    axios.get("/api/booking") 
         .then((response) => setBookings(response.data)) 
         .catch((error) => console.log(error.message))
+ }  
+ function completeBooking(completed_booking){
+   axios.post("/api/completedBooking", completed_booking) 
+        .then((response) => console.log(response.data)) 
+        .catch((error) => console.log(error))
  } 
- function completeBookings(booking){
-   axios.post("/api/booking/complete-booking", booking) 
-        .then((response) => console.log(response)) 
-        .catch((error) => console.log(error.message))
- } 
- function getCompletedBookings(){ 
-   axios.get('/api/booking/complete-booking') 
+ function getCompletedBookings(){
+   axios.get("/api/completedBooking") 
         .then((response) => setCompletedBookings(response.data)) 
         .catch((error) => console.log(error))
-
  }
- return <BookingContext.Provider value={{washPlans, addBookings, getBookings, bookings, completeBookings,completedBookings, getCompletedBookings}}>
+
+ 
+ 
+ 
+ 
+ return <BookingContext.Provider value={{washPlans, 
+               addBookings, getBookings, bookings, completeBooking}}>
     {children}
  </BookingContext.Provider>
 }
