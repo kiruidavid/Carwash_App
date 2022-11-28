@@ -11,7 +11,7 @@ import sendSms from "../sms/sendSms.js";
 export const addBooking = (req,res) => { 
     Booking.create(req.body)
     .then((data) => {  
-        res.json(data)
+        res.json({message: "New booking was added"})
        
 
     } ) 
